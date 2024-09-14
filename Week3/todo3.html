@@ -1,0 +1,72 @@
+<html>
+    <body>
+        <input type="text">
+        <button onclick="addTodo()">Add todo</button>
+        <button onclick="deleteLast()">Delete last</button>
+        <button onclick="deleteFirst()">Delete first</button>
+        <div id="top"></div>
+
+        <script>
+            let todos = [];
+
+            function addTodo(){
+                todos.push({
+                    title: document.querySelector("input").value
+                })
+                render();
+
+
+                // setInterval(function(){
+                //     todos.push({
+                //     title: document.querySelector("input").value
+                //     })
+                //     render()
+                // },5000);
+            }
+
+            function deleteLast(){
+                todos.splice(todos.length-1,1);
+                render();
+            }
+
+            function deleteFirst(){
+                todos.splice(0,1);
+                render();
+            }
+
+            function deleteTodo(todo){
+                const index = todos.indexOf(todo);
+                if(index!=-1){
+                    todos.splice(index,1);
+                }
+                render();
+            }
+
+
+
+            function createTodoComponent(todos){
+                const divEl = document.createElement("div");
+                const newElement = document.createElement("h3");
+                newElement.innerHTML = todos.title;
+                const buttonEl = document.createElement("button");
+                buttonEl.innerHTML = "Delete";
+                
+                buttonEl.addEventListener('click',function(){
+                    deleteTodo(todos)
+            });
+
+                divEl.appendChild(newElement);
+                divEl.appendChild(buttonEl);
+                document.querySelector("#top").appendChild(divEl);
+            }
+
+            function render(){
+                document.querySelector("#top").innerHTML = "";
+
+                for(let i=0;i<todos.length;i++){
+                    createTodoComponent(todos[i]);
+                }
+            }
+        </script>
+    </body>
+</html>

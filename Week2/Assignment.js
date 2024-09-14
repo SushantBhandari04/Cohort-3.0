@@ -128,18 +128,18 @@ HH:MM::SS AM/PM (Eg 01:45:23 PM)
  * the function should return a promise just like before
  */
 
-function callback(){
-    console.log("Callback")
-}
-function sleep(milliseconds){
-    return new Promise(resolve =>{
-        const startTime = Date.now();
-        while(Date.now() - startTime < milliseconds){
+// function callback(){
+//     console.log("Callback")
+// }
+// function sleep(milliseconds){
+//     return new Promise(resolve =>{
+//         const startTime = Date.now();
+//         while(Date.now() - startTime < milliseconds){
 
-        }
-        resolve();
-    } )
-}
-console.log("start")
-sleep(4000).then(callback)
+//         }
+//         resolve();
+//     } )
+// }
+// console.log("start")
+// sleep(4000).then(callback)
 
