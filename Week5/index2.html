@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+</head>
+<body>
+
+    <button onclick="getData()">Click</button>
+    
+</body>
+
+
+<script>
+    // async function getData(){
+    //     const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    //     const data = await res.json();
+    //     const div = document.createElement('div');
+    //     div.setAttribute('id','div');
+    //     document.querySelector('body').appendChild(div);
+    //     document.getElementById('div').innerHTML = data.body;     
+    // }
+
+    // Now using axios
+    async function getData(){
+        const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+        
+        for(let i=0;i<response.data.length;i++){
+            const div = document.createElement('div');
+            div.setAttribute('id',i);
+            document.querySelector('body').appendChild(div);
+            document.getElementById(i).innerHTML = response.data[i].title;
+        }
+    }
+  
+</script>
+</html>
