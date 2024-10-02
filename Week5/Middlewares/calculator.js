@@ -18,6 +18,9 @@ request body:
 const express = require('express');
 const app = express();
 
+// const bodyParser = require('body-parser');    // Under the hood express uses this library
+// app.use(bodyParser.json());
+
 // use the express.json middleware to parse the request body
 app.use(express.json());
 

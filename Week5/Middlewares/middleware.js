@@ -2,8 +2,36 @@ const express = require('express');
 const app = express();
 
 
+                // Middleware introduction
+
+let count = 0;
+
+function countRequests(req,res,next){
+    count++;
+    req.name = "Sushant";
+    console.log(`Total requests = ${count}`);
+    next();
+}
+
+function realSumHandler(req,res){
+    const a = parseInt(req.query.a);
+    const b = parseInt(req.query.b);
+    console.log(req.name);
+
+    res.json({
+        ans: a+b
+    })
+}
+
+app.get('/sum',countRequests,realSumHandler);
+
+app.listen(3000);
+
+
+
                 // Calling the next middleware function in the stack.
 
+// All the route handlers after this will get this middleware when we use app.use() 
 // app.use(function(req, res, next) {
 //     console.log("request received");
 //     next();
