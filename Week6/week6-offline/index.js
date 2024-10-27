@@ -40,7 +40,7 @@ function decodeJwt(token){
 
 function verifyJwt(token){
     try{
-        jwt.verify(token,jwtPassword);
+        jwt.verify(token,jwtPassword); // throws an error that's why try catch used
         return true;
     }
     catch(e){
@@ -49,4 +49,4 @@ function verifyJwt(token){
 }
 
 // console.log(signJwt("Sushant@gmail.com","1234567"));
-console.log(verifyJwt("yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN1c2hhbnRAZ21haWwuY29tIiwiaWF0IjoxNzI4NDQ0NjIxfQ.OcjFAKPxLEWo8qjbQRr8zYxSWw1rx610ukkKldjoCuE"))
+// console.log(verifyJwt("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN1c2hhbnRAZ21haWwuY29tIiwiaWF0IjoxNzI4NDQ0NjIxfQ.OcjFAKPxLEWo8qjbQRr8zYxSWw1rx610ukkKldjoCuE"))

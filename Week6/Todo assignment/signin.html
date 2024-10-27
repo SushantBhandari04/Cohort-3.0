@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+
+    <script>
+        const axios = require('axios');
+        async function signin(){
+            const username = document.getElementById("signin-username").value;
+            const password = document.getElementById("signin-password").value;
+            await axios.post("http://localhost:3000/signin",{
+                username: username,
+                password: password
+            })
+            alert("Signed in successfully.")
+            window.location.href = 'me.html';
+        }
+    </script>
+</head>
+<body>
+    <h1>Sign in</h1>
+    <div>
+        <div>
+            <label for="signin-username">Username: </label>
+            <input id="signin-username" type="text" placeholder="username">
+        </div>
+        <div>
+            <label for="signin-password">Password: </label>
+            <input id="signin-password" type="text" placeholder="password">
+        </div>
+    </div>
+    <div>
+        <button onclick="signin()">Sign in</button>
+    </div>
+</body>
+</html>
