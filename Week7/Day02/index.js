@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 
 const { z } = require('zod');
 
-mongoose.connect("mongodb+srv://sushbh2004:sushant1234@cluster0.byi6a.mongodb.net/todo-app-week-7-2")
+mongoose.connect("")
 
 // Hashing password 
 const bcrypt = require('bcrypt');
