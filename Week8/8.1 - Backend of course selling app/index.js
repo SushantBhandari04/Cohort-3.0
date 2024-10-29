@@ -21,7 +21,7 @@ app.use("/api/v1/admin",adminRouter);
 
 // async function main(){
     // use dotenv
-    // await mongoose.connect("mongodb+srv://sushbh2004:sushant1234@cluster0.byi6a.mongodb.net/coursera-app");
+    // await mongoose.connect("");
     // app.listen(3000);
     // console.log("Listening on port 3000");
 // }
