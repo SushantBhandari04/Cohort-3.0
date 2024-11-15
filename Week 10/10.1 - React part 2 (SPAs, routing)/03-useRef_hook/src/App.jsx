@@ -1,7 +1,8 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 
 function App(){
   return <div>
+    <Chat/>
     <FocusInput/>
     <Clock/>
   </div>
@@ -52,6 +53,37 @@ function Clock(){
     <button onClick={startClock}>Start</button>
     <button onClick={stopClock}>Stop</button>
   </div>
+}
+
+
+
+function Chat() {
+  const [messages, setMessages] = useState(["Hello!", "How are you?"]);
+  const chatBoxRef = useRef(null);
+
+  // Function to simulate adding new messages
+  const addMessage = () => {
+    setMessages((prevMessages) => [...prevMessages, "New message!"]);
+  };
+
+  // Scroll to the bottom whenever a new message is added
+  useEffect(() => {
+    chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+  }, [messages]);
+
+  return (
+    <div>
+      <div 
+        ref={chatBoxRef} 
+        style={{ height: "200px", overflowY: "scroll", border: "1px solid black" }}
+      >
+        {messages.map((msg, index) => (
+          <div key={index}>{msg}</div>
+        ))}
+      </div>
+      <button onClick={addMessage}>Add Message</button>
+    </div>
+  );
 }
 
 export default App
