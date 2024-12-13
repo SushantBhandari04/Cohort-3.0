@@ -1,82 +1,74 @@
-import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil"
-import { itemAtom } from "./Store/Atoms/itemAtom"
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil"
+import { checkoutSelector, itemAtomFamily } from "./Store/Atoms/atom"
 
 function App(){
-  return <div>
+  return <div style={{display:"flex"}}>
     <RecoilRoot>
+      <div>
+      <Item id={1}/>
+      <Item id={2}/>
+      <Item id={3}/>
+      </div>
+      <Checkout/>
 
-    
-    <div style={{display:"flex",justifyContent:"space-between", alignContent:"center"}}>
-    <div>
-      <Item title={"Shoes"} price={1000} quantity={2}/>
-      <Item title={"Shoes"} price={1000} quantity={2}/>
-      <Item title={"Shoes"} price={1000} quantity={2}/>
-      <CartItems/>
-    </div>
-    <div>
-      <Checkout items={2} total={3000}/>
-    </div>
-    
-  </div>
-  <AddItems/>
-  </RecoilRoot>
+    </RecoilRoot>
   </div>
 }
 
-function CartItems(){
-  const items = useRecoilValue(itemAtom);
+function Item({id}){
+  const [item, setItem] = useRecoilState(itemAtomFamily(id));
 
-  const itemComponents = items.map((item)=>{
-    <Item title={item.title} price={item.price} quantity={item.quantity}/>
-  })
+  const title = item.title;
+  const price = item.price;
+  const quantity = item.quantity;
 
-  return (<div>
-    {itemComponents}
-  </div>
-  );
-}
-
-function Item({title, price, quantity}){
   function increase(){
-
+    setItem(currentItem => ({...currentItem, quantity: currentItem.quantity+1}))
   }
-  return (
-    <div style={{display:"flex", justifyContent:"space-between", borderRadius:10, height:100, width:700, backgroundColor:"white"}}>
 
-      <div style={{display:"flex", marginLeft:10}}>
-        <div style={{alignContent:"center"}}>
-          <img style={{height:65, width:72}} src="https://cdn.shopify.com/s/files/1/0665/5171/files/air-jordan-1-unc-1_1024x1024.jpg?2095653669182594769" alt="" />
-        </div>
-        
-        <div style={{marginLeft:15, marginBottom:10, marginTop:20}}>
-          <div> {title}</div>
-         
-          <br />
-          <button onClick={increase} style={{ marginRight:5, alignContent:"center", paddingTop:0, paddingBottom:0, paddingLeft:3, paddingRight:3, width:17, border:"none", backgroundColor:"lightGray"}}>-</button>
-          {quantity}
-          <button style={{ marginLeft:5, alignContent:"center", width:17, paddingTop:0, paddingBottom:0, paddingLeft:3, paddingRight:3, border:"none", backgroundColor:"lightGray"}}>+</button>
-        </div>
+  function decrease(){
+    setItem(currentItem => ({...currentItem, quantity: currentItem.quantity-1}))
+  }
+
+
+return (
+  <div style={{display:"flex", justifyContent:"space-between", borderRadius:10, height:100, width:700, backgroundColor:"white"}}>
+
+    <div style={{display:"flex", marginLeft:10}}>
+      <div style={{alignContent:"center"}}>
+        <img style={{height:65, width:72}} src={item.img} alt="" />
       </div>
       
-
-      <div style={{marginRight:20, alignContent:"center"}}>
-        {price}
+      <div style={{marginLeft:15, marginBottom:10, marginTop:20}}>
+        <div> {title}</div>
+       
+        <br />
+        <button  onClick = {decrease} style={{cursor:"pointer", marginRight:5, alignContent:"center", paddingTop:0, paddingBottom:0, paddingLeft:3, paddingRight:3, width:17, backgroundColor:"lightGray", border:"none"}}>-</button>
+        {quantity}
+        <button onClick={increase} style={{cursor:"pointer", marginLeft:5, alignContent:"center", width:17, paddingTop:0, paddingBottom:0, paddingLeft:3, paddingRight:3, border:"none", backgroundColor:"lightGray"}}>+</button>
       </div>
     </div>
-  )
+    
+
+    <div style={{marginRight:20, alignContent:"center"}}>
+      {price*quantity}
+    </div>
+  </div>
+)
 }
 
+function Checkout(){
+  const checkout = useRecoilValue(checkoutSelector);
 
-function Checkout({items, total}){
   return <div style={{backgroundColor:"white", paddingBottom:30, paddingLeft:19, paddingTop:15, paddingRight:19, borderRadius:10, width:350, margin:20}}>
     <div style={{fontSize:18}}><h2>Order Summary</h2></div>
     <div style={{display:"flex", justifyContent:"space-between"}}>
-      <div>Items ({items}): </div>
-      <div>{total}</div>
+      <div>Items ({checkout.totalQuantity}): </div>
+      <div>{checkout.totalPrice}</div>
     </div>
     <div style={{display:"flex", justifyContent:"space-between"}}>
       <div><h3>Order Total:</h3> </div>
-      <div><h3>{total}</h3></div>
+      <div><h3>{checkout.totalPrice}</h3></div>
     </div>
 
     <div>
@@ -86,23 +78,5 @@ function Checkout({items, total}){
   </div>
 
 }
-
-function AddItems(){
-  const items = useRecoilValue(itemAtom);
-  const setItems = useSetRecoilState(itemAtom);
-
-  function addItem(){
-    setItems([...items, {
-      title: "Shoes",
-      price: 100,
-      quantity: 1
-    }])
-  }
-
-  return <div>
-    <button onClick={addItem}>Add item</button>
-  </div>
-}
-
 
 export default App
