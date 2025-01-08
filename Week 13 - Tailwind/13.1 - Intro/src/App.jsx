@@ -1,18 +1,65 @@
 import { useRef, useState } from "react"
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
+import ProfileCard from "./components/ProfileCard";
+import WebinarCard from "./components/WebinarCard";
+import TaskComponent from "./components/TaskComponent";
+import SideBar from "./components/SideBar";
+import GreetCard from "./components/GreetCard";
+import Top from "./components/Top";
+import Bars from "./components/Bars";
+
 
 
 function App() {
+  const [open, setOpen] = useState(false);
 
-  return <BrowserRouter>
-    <Routes>
-      <Route path="*" element={<FirstPage/>}/>
-      <Route path="/second" element={<SecondPage/>}/>
-      <Route path="/third" element={<ThirdPage/>}/>
-    </Routes>
-  </BrowserRouter>
-
+  return (
+    <div className="flex">
+      <Bars setOpen={setOpen} open={open} />
+      <div
+        className={`flex flex-col justify-center p-0 m-0 transition-all duration-300 ${
+          open ? 'w-1/4' : 'w-0 bg-white-500 sm:bg-black-500'
+        }`}
+      >
+        <SideBar open={open} />
+      </div>
+      <div className="w-full">
+        <Top />
+        <div className="flex gap-8">
+          <ProfileCard
+            image="../images/girlImage.png"
+            name="Nezuko"
+            email="nezuko@gmail.com"
+            contact={9888888888}
+            location="Swordsmith Village"
+          />
+          <div className="flex flex-col w-full sm:w-3/4 sm:mt-0 mt-4 mr-8 sm:mr-0 relative sm:static">
+            <GreetCard />
+            <div className="flex gap-8 items-center flex-col sm:flex-row">
+              <WebinarCard />
+              <TaskComponent />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+
+  // return <div className="flex">
+  //   
+  // </div>
+
+  // return <BrowserRouter>
+  //   <Routes>
+  //     <Route path="*" element={<FirstPage/>}/>
+  //     <Route path="/second" element={<SecondPage/>}/>
+  //     <Route path="/third" element={<ThirdPage/>}/>
+  //   </Routes>
+  // </BrowserRouter>
+
+
 
 function FirstPage(){
   const [state, setState] = useState(false);
