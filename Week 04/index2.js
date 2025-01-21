@@ -35,7 +35,7 @@ program
   .version('0.8.0');
 
 program.command('count_sentences')
-  .description('Countthe number the number of lines in a file')
+  .description('Count the number of lines in a file')
   .argument('<file>','file to count the number of lines')
   .action((file) => {
     fs.readFile(file,'utf-8',function(err,data){

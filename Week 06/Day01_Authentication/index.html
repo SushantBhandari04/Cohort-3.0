@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+</head>
+<body>
+    <div>
+        <input type="text" id="signup-username" placeholder="Username">
+        <input type="text" id="signup-password" placeholder="Password">
+        <button id="signup-button" onclick="signup()">Signup</button>
+    </div>
+    <div>
+        <input type="text" id="signin-username" placeholder="Username">
+        <input type="text" id="signin-password" placeholder="Password">
+        <button id="signup-button" onclick="signin()">Signin</button>
+    </div>
+    <div>
+        <div>Todos</div>
+        <input type="text" id="todo-input" placeholder="Enter todo.">
+        <button onclick="addTodo()" >Add Todo</button>
+        <div id="todos"></div>
+    </div>
+
+    <script>
+        async function signup(){
+            const username = document.getElementById("signup-username").value;
+            const password = document.getElementById("signup-password").value;
+
+            const response = await axios.post("http://localhost:3000/signup",{
+                username,
+                password
+            })
+
+            if(!response){
+                alert("Enter valid inputs.")
+            }
+            else{
+                alert("Signed up successfully.")
+            }
+        }
+
+        async function signin() {
+            const username = document.getElementById("signin-username").value;
+            const password = document.getElementById("signin-password").value;
+
+            const response = await axios.post("http://localhost:3000/signin",{
+                username,
+                password
+            })
+
+            if(!response){
+                alert("Enter valid user.")
+            }
+            else{
+                localStorage.setItem("token", response.data.token);
+                alert("Signed in successfully");
+                todos();
+            }
+        }
+
+        async function todos(){
+            const token = localStorage.getItem("token");
+            console.log(token);
+
+            const response = await axios.get("http://localhost:3000/todos/all", {
+                headers: {
+                    "token": token
+                }
+            })
+
+            console.log(response);
+
+            const todos = response.data.todos;
+
+            console.log(todos);
+            document.getElementById("todos").innerText = "";
+            document.getElementById("todos").innerText = JSON.stringify(todos);
+        }
+
+        async function addTodo(){
+            const token = localStorage.getItem("token");
+            const todo = document.getElementById("todo-input").value;
+
+            const response = await axios.post("http://localhost:3000/todos/add", 
+            { "todo": todo }, 
+            { headers: 
+                { "token": token } 
+            });
+
+            todos();
+
+            alert("Todo added successfully.")
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+/* Basic styling for the navbar */
+.navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 0 20px;
+    height: 60px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+
+  .subitem-title{
+    color: black;
+    padding: 12px;
+    padding-left: 16px;
+    border-radius: 4px;
+  }
+
+  .subitem-title:hover{
+    cursor: pointer;
+    background-color: #ddd;
+  }
+  
+  .navBar a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .navBar a:hover {
+    background-color: #575757;
+    border-radius: 4px;
+  }
+  
+  /* Basic styling for dropdown */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+  }
+  
+  .dropdown-title {
+    cursor: pointer;
+    padding: 14px 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-title:hover {
+    background-color: #ddd;
+
+    border-radius: 4px;
+  }
+
+  ul{
+    padding-left: 0px;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    margin: 0px;
+  }
+  
+  
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+    border-radius: 4px;
+  }
+  
+  /* Styling for subitems */
+  .dropdown-subitems {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+  }
+  
+  
+  
+  .dropdown-item {
+    position: relative;
+    background-color: inherit;
+    z-index: 2; /* Ensure it stays on top */
+  }
+  
+  .dropdown-item a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Ensuring the main item style doesn't change on hover */
+  .dropdown-item:hover > a {
+    background-color: inherit;
+    border-radius: 0;
+  }
+  
+  .dropdown-item a:hover {
+    background-color: #ddd;
+    border-radius: 4px;
+  }
+
+  .dropdown-item:hover .dropdown-item{
+    color: black;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 600;
+  }
+  
