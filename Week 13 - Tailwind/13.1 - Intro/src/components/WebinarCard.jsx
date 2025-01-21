@@ -1,5 +1,5 @@
 function WebinarCard(){
-    return <div className="flex flex-col gap-0.5  rounded-lg items-center h-fit m-2 w-full sm:w-3/5 text-sm border-black  p-4 pb-1 shadow-lg ">
+    return <div className="dark:bg-black-100 flex flex-col gap-0.5  rounded-lg items-center h-fit m-2 w-full sm:w-3/5 text-sm border-black  p-4 pb-1 shadow-lg ">
         <InputDate/>
         <WebinarCardContent live={"Live"}/>
         <Line/>
@@ -18,8 +18,8 @@ function Line(){
 }
 
 function InputDate(){
-    return <div className="w-full  rounded-lg  p-0 mb-2">
-        <input className="w-full cursor-pointer border-solid rounded-md bg-white-200  p-1 m-0" type="date" />
+    return <div className="w-full  rounded-lg dark:bg-black-100   p-0 mb-2">
+        <input className="w-full cursor-pointer border-solid rounded-md bg-white-200 dark:bg-black-200 dark:text-white-700  p-1 m-0" type="date" />
     </div>
 }
 

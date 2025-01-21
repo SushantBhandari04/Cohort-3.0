@@ -7,6 +7,7 @@ import SideBar from "./components/SideBar";
 import GreetCard from "./components/GreetCard";
 import Top from "./components/Top";
 import Bars from "./components/Bars";
+import ToggleTheme from "./components/ToggleTheme";
 
 
 
@@ -14,7 +15,7 @@ function App() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex">
+    <div className="flex dark:bg-black-200 dark:text-white-700">
       <Bars setOpen={setOpen} open={open} />
       <div
         className={`flex flex-col justify-center p-0 m-0 transition-all duration-300 ${
@@ -24,7 +25,11 @@ function App() {
         <SideBar open={open} />
       </div>
       <div className="w-full">
-        <Top />
+       <div className="flex justify-right">
+       <Top />
+       <ToggleTheme/>
+       </div>
+
         <div className="flex gap-8">
           <ProfileCard
             image="../images/girlImage.png"

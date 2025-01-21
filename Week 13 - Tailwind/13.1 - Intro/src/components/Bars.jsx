@@ -9,7 +9,7 @@ function Bars({ setOpen, open }) {
           viewBox="0 0 20 20"
           fill="currentColor"
           className={`text-black-500 size-5 cursor-pointer ${
-            open ? 'sm:text-black-500' : 'sm:text-white-200'
+            open ? 'sm:text-black-500 dark:text-white-500' : 'sm:text-white-200 sm:dark:text-black-100 dark:text-white-500'
           }`}
         >
           <path

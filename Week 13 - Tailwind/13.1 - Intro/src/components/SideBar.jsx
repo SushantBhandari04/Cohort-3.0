@@ -3,7 +3,7 @@ import React from 'react';
 function SideBar({ open }) {
   return (
     <div
-      className={`h-screen bg-white-400 shadow-xl sm:relative p-6 pt-8  pt-16 sm:pt-6 transition-all duration-300 
+      className={`h-screen bg-white-400 dark:bg-black-100 shadow-xl sm:relative p-6 pt-8  pt-16 sm:pt-6 transition-all duration-300 
       ${open ? 'w-full opacity-100 z-40 absolute sm:z-auto ' : 'w-0 opacity-0 overflow-hidden'} `}
     >
       <div className="flex justify-between mt-4">
